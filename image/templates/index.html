@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<h1>Image Gallery</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="d-flex flex-wrap justify-content-center">
+    {% for image in images %}
+    <div class="card m-2" style="flex: 0 0 300px; max-width: 300px;">
+      <img
+        src="{{ image.previewURL }}"
+        class="card-img-top"
+        alt="Card Image"
+        style="height: 200px; object-fit: cover;"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ image.tags }}</h5>
+        <p class="card-text">{{ image.likes }} likes</p>
+        <a href="{% url 'detail' pk=image.pk %}" class="btn btn-primary">View Details</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
